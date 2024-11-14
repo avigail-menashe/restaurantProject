@@ -30,3 +30,4 @@ T:\Group A\C#\אביגיל מנשה\פרוייקט\rstaurantProject\rstaurantPro
 T:\Group A\C#\אביגיל מנשה\פרוייקט\rstaurantProject\rstaurantProject\obj\Debug\net8.0\rstaurantProject.pdb
 T:\Group A\C#\אביגיל מנשה\פרוייקט\rstaurantProject\rstaurantProject\obj\Debug\net8.0\rstaurantProject.genruntimeconfig.cache
 T:\Group A\C#\אביגיל מנשה\פרוייקט\rstaurantProject\rstaurantProject\obj\Debug\net8.0\ref\rstaurantProject.dll
+T:\Group A\C#\אביגיל מנשה\פרוייקט\rstaurantProject\rstaurantProject\obj\Debug\net8.0\rstaurantProject.sourcelink.json

@@ -10,27 +10,27 @@ namespace rstaurantProject.Controllers
     public class OrdersController : ControllerBase
     {
 
-        public static List<Order> orders = new List<Order>
-        {
-            new Order{OrderId=1, OrderDate=new DateTime(), OrderStatus =" yyy",Totalcost=-1}
-            
+        private readonly DataContext _context;
 
-        };
+        public OrdersController(DataContext context)
+        {
+            _context = context;
+        }
         static int count = 2;
 
         // GET: api/<OrdersController>
         [HttpGet]
         public IEnumerable<Order> Get()
         {
-            return orders;
+            return _context.orders;
         }
 
         // GET api/<OrdersController>/5
         [HttpGet("{id}")]
         public Order Get(int id)
         {
-            int index = orders.FindIndex(o => o.OrderId == id);
-            return orders[index];
+            int index = _context.orders.FindIndex(o => o.OrderId == id);
+            return _context.orders[index];
         }
 
         // POST api/<OrdersController>
@@ -38,7 +38,7 @@ namespace rstaurantProject.Controllers
         public Order Post([FromBody]Order value)
         {
             value.OrderId = count++;
-            orders.Add(value);
+            _context.orders.Add(value);
             return value;
         }
 
@@ -46,19 +46,19 @@ namespace rstaurantProject.Controllers
         [HttpPut("{id}")]
         public Order Put(int id, [FromBody]Order value)
         {
-            int index = orders.FindIndex((Order o) => { return o.OrderId == id; });
-            orders[index].OrderDate = value.OrderDate;
-            orders[index].OrderStatus = value.OrderStatus;
-            orders[index].Totalcost = value.Totalcost;  
-            return orders[index];
+            int index = _context.orders.FindIndex((Order o) => { return o.OrderId == id; });
+            _context.orders[index].OrderDate = value.OrderDate;
+            _context.orders[index].OrderStatus = value.OrderStatus;
+            _context.orders[index].Totalcost = value.Totalcost;  
+            return _context.orders[index];
         }
 
         // DELETE api/<OrdersController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            int index = orders.FindIndex((Order o) => { return o.OrderId == id; });
-            orders.RemoveAt(index);
+            int index = _context.orders.FindIndex((Order o) => { return o.OrderId == id; });
+            _context.orders.RemoveAt(index);
         }
     }
 }

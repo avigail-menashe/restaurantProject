@@ -13,27 +13,26 @@ namespace rstaurantProject.Controllers
 
     public class ClientsController : ControllerBase
     {
-
-        public static List<Client> clients = new List<Client>
+        private readonly DataContext _Context;
+        public ClientsController(DataContext context)
         {
-            new Client{Id=1,Phone="1111", Name="Avigail"},
-            new Client{Id=2,Phone="5555", Name="Yael"}
+            _Context = context;
+        }
 
-        };
         static int count = 3;
         // GET: api/<ClientsController>
         [HttpGet]
         public IEnumerable<Client> Get()
         {
-            return clients;
+            return _Context.clients;
         }
 
         // GET api/<ClientsController>/5
         [HttpGet("{id}")]
         public Client Get(int id)
         {
-            int index = clients.FindIndex(c => c.Id == id);
-            return clients[index];
+            int index = _Context.clients.FindIndex(c => c.Id == id);
+            return _Context.clients[index];
 
         }
 
@@ -42,7 +41,7 @@ namespace rstaurantProject.Controllers
         public Client Post([FromBody] Client value)
         {
             value.Id = count++;
-            clients.Add(value);
+            _Context.clients.Add(value);
                 return value;
         }
 
@@ -50,18 +49,18 @@ namespace rstaurantProject.Controllers
         [HttpPut("{id}")]
         public Client Put(int id, [FromBody] Client value)
         {
-            int index = clients.FindIndex((Client c) => { return c.Id == id; });
-            clients[index].Name = value.Name;
-            clients[index].Phone =value.Phone;
-            return clients[index];
+            int index = _Context.clients.FindIndex((Client c) => { return c.Id == id; });
+            _Context.clients[index].Name = value.Name;
+            _Context.clients[index].Phone =value.Phone;
+            return _Context.clients[index];
         }
 
         // DELETE api/<ClientsController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            int index = clients.FindIndex((Client c) => { return c.Id == id; });
-            clients.RemoveAt(index);
+            int index = _Context.clients.FindIndex((Client c) => { return c.Id == id; });
+            _Context.clients.RemoveAt(index);
 
         }
     }
